@@ -5,7 +5,7 @@ pipeline {
 	
 		stage ('Bake a docker image') {
 			steps {
-				sh 'packer packer.json'
+				sh 'packer bake/packer.json'
         		}
         	}
     	}
