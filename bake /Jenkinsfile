@@ -1,12 +1,23 @@
 pipeline {
-	agent any
-	
-	stages {
-	
-		stage ('Bake a docker image') {
-			steps {
-				sh 'packer bake/packer.json'
-        		}
-        	}
-    	}
+    agent any
+
+    stages {
+        stage('Bake a docker image') {
+            steps {
+                script {
+                    def packerPath = "/usr/local/bin/packer"
+                    sh "${packerPath} /home/adriana/Jobs/bake/packer.json"
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline concluída com sucesso!'
+        }
+        failure {
+            echo 'Erro durante a execução da pipeline'
+        }
+    }
 }
