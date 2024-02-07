@@ -10,3 +10,28 @@ pipeline {
         }
     }
 
+pipeline {
+    agent any
+
+    stages {
+        stage('Deploy') {
+            steps {
+                script {
+                    // Usando a instrução 'sh' para executar comandos no ambiente Unix-like
+                    sh 'docker run -p 8080:8080 adriananogueira/calculator:1.0'
+                    // Ou, se estiver no ambiente Windows, use a instrução 'bat'
+                    // bat 'docker run -p 8080:8080 adriananogueira/calculator:1.0'
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline concluída com sucesso!'
+        }
+        failure {
+            echo 'Erro durante a execução da pipeline'
+        }
+    }
+}
