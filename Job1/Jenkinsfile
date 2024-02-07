@@ -1,0 +1,12 @@
+pipeline {
+	agent any
+	
+	stages {
+	
+		stage ('Bake a docker image') {
+			steps {
+				sh 'packer build Job1/packer.json'
+        		}
+        	}
+    	}
+}
