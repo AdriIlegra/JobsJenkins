@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    stages {
+
+        }
+        stage('Deploy') {
+            steps {
+                docker run -p 8080:8080 -adriananogueira/calculator:1.0
+            }
+        }
+    }
+
