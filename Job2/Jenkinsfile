@@ -1,35 +1,13 @@
 pipeline {
     agent any
     stages {
-
-        }
-        stage('Deploy') {
-            steps {
-                docker run -p 8080:8080 -adriananogueira/calculator:1.0
-            }
-        }
-    }
-
-pipeline {
-    agent any
-
-    stages {
-        stage('Deploy') {
+        stage('Build and Run Docker Container') {
             steps {
                 script {
+                    // Seu comando docker run aqui
                     sh 'docker run -p 8080:8080 adriananogueira/calculator:1.0'
-                    
                 }
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Pipeline concluída com sucesso!'
-        }
-        failure {
-            echo 'Erro durante a execução da pipeline'
         }
     }
 }
